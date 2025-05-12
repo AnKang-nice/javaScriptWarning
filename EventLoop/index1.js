@@ -1,30 +1,30 @@
-new Promise((resolve, reject) => {
-    console.log("0");
-    resolve();
-}).then(() => {
-    console.log('6');
+// new Promise((resolve, reject) => {
+//     console.log("0");
+//     resolve();
+// }).then(() => {
+//     console.log('6');
 
-    setTimeout(() => {
-        console.log("3");
-    }, 100);
-});
+//     setTimeout(() => {
+//         console.log("3");
+//     }, 100);
+// });
 
-setTimeout(() => {
-    console.log("1");
-    new Promise((resolve, reject) => {
-        console.log("7");
-        resolve();
-    }).then(() => {
-        setTimeout(() => {
-            console.log("5");
-        }, 50);
-    });
-}, 300);
-setTimeout(() => {
-    console.log("2");
-}, 200)
+// setTimeout(() => {
+//     console.log("1");
+//     new Promise((resolve, reject) => {
+//         console.log("7");
+//         resolve();
+//     }).then(() => {
+//         setTimeout(() => {
+//             console.log("5");
+//         }, 50);
+//     });
+// }, 300);
+// setTimeout(() => {
+//     console.log("2");
+// }, 200)
 
-console.log("4");
+// console.log("4");
 
 // 同一批次中的宏任务  按时间先后
 
@@ -44,7 +44,7 @@ new Promise((resolve, reject) => {
 
     setTimeout(() => {
         console.log("3");
-    }, 400);
+    }, 100);
 });
 
 setTimeout(() => {
@@ -57,9 +57,9 @@ setTimeout(() => {
 
         setTimeout(() => {
             console.log("5");
-        }, 50);
+        }, 100);
     });
-}, 300);
+}, 50);
 setTimeout(() => {
     console.log("2");
 }, 200)
