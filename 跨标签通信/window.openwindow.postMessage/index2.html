@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>新窗口接收的消息：<span id="newMsg"></span></div>
+    <button id="replyBtn">回复主窗口</button>
+
+    <script>
+        let mainMsg = '';
+        // 监听主窗口发送的消息
+        window.addEventListener('message', (event) => {
+            console.log(event, event.source, window.opener);
+            // 验证消息来源（防止跨域攻击） window.opener 指向打开当前窗口的主窗口
+            if (event.source === window.opener && event.origin === 'http://localhost:3000') {
+                document.getElementById('newMsg').textContent = event.data;
+                mainMsg = event.data; // 保存主窗口发送的消息
+            }
+        });
+
+        // 向主窗口发送回复消息
+        document.getElementById('replyBtn').addEventListener('click', () => {
+            if (window.opener && !window.opener.closed) {
+                window.opener.postMessage(
+                    `你好，主窗口！ 收到你的消息${mainMsg}`,
+                    'http://localhost:3000'
+                );
+            }
+        });
+    </script>
+</body>
+
+</html>

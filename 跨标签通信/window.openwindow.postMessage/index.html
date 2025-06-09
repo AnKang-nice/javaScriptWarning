@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">打开新窗口</button>
+    <input type="text" id="message" placeholder="输入消息">
+    <button id="btn2">发送消息</button>
+
+    <script>
+        // 跨源通信示例
+        let newWindow;
+
+        document.getElementById('btn').addEventListener('click', function () {
+            // 打开一个新窗口
+            newWindow = window.open('http://localhost:3001/index2.html', '_blank', 'width=600,height=400');
+        });
+
+        document.getElementById('btn2').addEventListener('click', function () {
+            if (newWindow) {
+                const message = document.getElementById('message').value;
+                console.log(message);
+                // 通过 postMessage 发送消息到新窗口
+                newWindow.postMessage(message, 'http://localhost:3001'); // 替换为新窗口的实际 URL
+            } else {
+                alert('请先打开新窗口！');
+            }
+        });
+
+        // 监听来自新窗口的消息
+        window.addEventListener('message', function (event) {
+            console.log('收到来自新窗口的消息:', event.data);
+        });
+
+    </script>
+</body>
+
+</html>
