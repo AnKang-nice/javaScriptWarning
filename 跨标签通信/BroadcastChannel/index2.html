@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建一个新的 BroadcastChannel
+        const channel = new BroadcastChannel('test_channel');
+
+        // 监听消息事件
+        channel.onmessage = function (event) {
+            console.log('Received message:', event.data);
+            // 重新加载页面
+            location.reload();
+        };
+
+
+    </script>
+</body>
+
+</html>
